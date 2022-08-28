@@ -1,19 +1,10 @@
 .App {
   text-align: center;
+  font-family: "Roboto", serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+.header-card {
+  font-weight: 900;
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-link {
-  color: #61dafb;
 }
 
