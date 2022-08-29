@@ -1,6 +1,5 @@
 import { screen, render } from '@testing-library/react';
 import App from './App';
-import CountryCardGrid from './App'
 
 // Test mock fetch and data response
 const fetchCountries = async () => {
