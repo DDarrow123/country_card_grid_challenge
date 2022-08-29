@@ -3,19 +3,36 @@
   font-family: "Roboto", serif;
 }
 
-html, body {
-  overflow-x: hidden;
+.card-wrapper-loading {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  z-index: 1;
+  opacity: .7;
+}
+
+.card-loading-text {
+  color: white;
+  z-index: 2;
+  padding-left: 10px;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .card-parent {
-  padding: 15px 20px;
+  padding: 15px 30px;
   margin-left: -15px;
   margin-right: -15px;
+  display: flex;
+  flex-direction: 100%;
+  flex-direction: column;
+  justify-content: center;
 }
 
 @media screen and (min-width: 600px) {
   .card-parent {
-    padding: 20px 20px;
+    padding: 40px 40px;
   }
 }
 
@@ -53,7 +70,21 @@ html, body {
 }
 
 .card-main-wrapper {
+  border-radius: 5px;
   grid-area: header;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: url('../public/boat_sunset.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 250px;
+}
+
+.card-main-wrapper .card-country-name {
+  margin-top: 50px;
 }
 
 .card-wrapper {
@@ -63,9 +94,17 @@ html, body {
   align-items: center;
   position: relative;
   border-radius: 5px;
-  background-position: center;
-  height: 150px;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  height: 200px;
   justify-content: center;
+}
+
+@media screen and (min-width: 768px) {
+  .card-wrapper {
+    height: 250px;
+  }
 }
 
 .card-wrapper:after {
@@ -111,6 +150,7 @@ html, body {
   font-size: 9px;
   text-align: center;
   margin-bottom: 30px;
+  line-height: 11px;
 }
 
 .card-overlay .card-explore-more {
@@ -121,17 +161,15 @@ html, body {
   opacity: 1;
 }
 
-/* .text {
-  color: white;
-  font-size: 20px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  text-align: center;
-} */
+.card-wrapper:hover .card-country-name,
+.card-wrapper:hover .card-city-name {
+  opacity: 0;
+}
+
+.card-wrapper:hover .card-overlay .card-country-name,
+.card-wrapper:hover .card-overlay .card-city-name {
+  opacity: 1;
+}
 
 .card-country-name {
   align-self: center;
@@ -140,12 +178,12 @@ html, body {
   font-size: 8px;
   margin-bottom: 3px;
   text-transform: uppercase;
-
+  letter-spacing: 2px;
 }
 
 @media screen and (min-width: 768px) {
   .card-country-name {
-    font-size: 12px;
+    font-size: 10px;
   }
 }
 
@@ -155,7 +193,6 @@ html, body {
   font-weight: 700;
   text-transform: uppercase;
   font-size: 11px;
-
 }
 
 @media screen and (min-width: 768px) {
@@ -165,19 +202,24 @@ html, body {
 }
 
 .card-desc {
-  font-size: 12px;
+  font-size: 10px;
   color: white;
+  text-align: center;
+  width: 75%;
+  line-height: 18px;
 }
 
 [data-index='0'] {
   grid-area: left;
-  background-image: url('../public/paris.jpeg');
+  background: url('../public/paris.jpeg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
 [data-index='1'] {
   grid-area: side;
   background-image: url('../public/berlin.jpeg');
-
 }
 
 [data-index='2'] {
@@ -201,7 +243,16 @@ html, body {
 }
 
 .header-card {
-  font-weight: 900;
+  margin: 8px 0 5px 0;
+  font-weight: 800;
+  font-size: 30px;
+  color: white;
+}
+
+@media screen and (min-width: 768px) {
+  .header-card {
+    font-size: 40px;
+  }
 }
 
 .card-explore-more {
@@ -217,5 +268,6 @@ html, body {
   font-size: 8px;
   white-space: nowrap;
   height: 20px;
+  cursor: pointer;
 }
 

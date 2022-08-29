@@ -39,74 +39,65 @@ const CountryCardGrid = () => {
   const [countryId] = useState(null);
 
   const fetchCountries = async () => {
-    const response = await fetch(`${BASE_URL}`)
-    console.log('response?', response);
-    const countryList = await response.json()
-
-    const { data } = countryList
-    console.log('data comes back from request', data);
-
-    setCountries(data.filter(country => {
-        const updatedCountry = countryConfig[country.iso2]
+    try {
+      const response = await fetch(`${BASE_URL}`)
+      const countryList = await response.json()
+  
+      const { data } = countryList
+  
+      if (data) {
+        setCountries(data.filter(country => {
+          const updatedCountry = countryConfig[country.iso2]
           return country.country === updatedCountry;
-        }))
-
-    console.log('country data state first set', countries);
+        }));
+      } else {
+        console.log('Quel dommage! No data available to filter')
+      }
+    } catch (err) {
+      console.error(err.message)
     }
+  };
     
-    useEffect(() => {
-      fetchCountries();
+  useEffect(() => {
+    fetchCountries();
 
     // If the data was updated/were to change, we might consider some sort of
     // timeout function to grab the data every so often
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [countryId])
+  }, [countryId]);
 
-    console.log('state here:', countries);
-
-    if (countries) {
+  if (countries) {
     return (
-        //iterate through each card and display the appropriate data
-        //display height and width of card differently depending on which child it is - i.e. if first or last, 
       <>
-        {/* <div className='card-children-wrapper'> */}
-        { 
-          countries.map((country, index) => {
-            return (
-            <>
-              <div className='card-wrapper' data-index={index}>
-                <div className='card-country-name'>{country.country}</div>
-                <div className='card-city-name'>{Object.keys(cityConfig[country.iso2]).join('')}</div>
-                <div className="card-overlay">
-                  <div className='card-country-name'>{country.country}</div>
-                  <div className='card-city-name'>{Object.keys(cityConfig[country.iso2]).join('')}</div>
-                  <div className='card-desc'>{Object.values(cityConfig[country.iso2]).join('')}</div>
-                  <button className='card-explore-more'>Explore More</button>
-                </div>
-              </div>
-            </>
-            )
-          }) 
-        }
-        {/* </div> */}
+      { countries.map((country, index) =>
+        <div className='card-wrapper' data-index={index} key={country.country}>
+          <div className='card-country-name'>{country.country}</div>
+          <div className='card-city-name'>{Object.keys(cityConfig[country.iso2]).join('')}</div>
+          <div className="card-overlay">
+            <div className='card-country-name'>{country.country}</div>
+            <div className='card-city-name'>{Object.keys(cityConfig[country.iso2]).join('')}</div>
+            <p className='card-desc'>{Object.values(cityConfig[country.iso2]).join('')}</p>
+            <button className='card-explore-more' href='#'>Explore More</button>
+          </div>
+        </div>
+      ) }
       </>
-     )
-    } else {
-      return <div>Loading...</div>
-    }
-    
+      )
+   } else {
+     return <div className='card-wrapper-loading'><div className='card-loading-text'>Please wait. Loading cards...</div></div>
+   } 
 }
  
 const App = () => {
   return (
     <>
-    <div className='card-parent'>
+     <div className='card-parent'>
       <div className='card-grid-wrapper'>
         <div className='card-main-wrapper'>
-          <div>FRONT-END</div>
+          <div className='card-country-name'>FRONT-END</div>
           <h1 className="header-card">valtech_</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <p className='card-desc'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
         </div>
         <CountryCardGrid/>
       </div>
