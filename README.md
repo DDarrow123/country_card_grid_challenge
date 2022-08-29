@@ -1,5 +1,6 @@
 # Valtech Code Challenge
-A code challenge that displays cards with various countries and capitals! 
+A code challenge that displays country cards with various country names, cities, and a brief blurb about each city! 
+
 
 ## API
 https://countriesnow.space/ 
