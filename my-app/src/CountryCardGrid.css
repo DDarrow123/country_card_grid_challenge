@@ -276,3 +276,7 @@
     height: 20px;
     cursor: pointer;
   }
+
+  .card-explore-more:focus {
+    border: .5px solid blue;
+  }
