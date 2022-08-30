@@ -69,8 +69,8 @@ const CountryCardGrid = () => {
   return (countries) ? (
     <>
     { countries.map((country, index) =>
-      <div className='card-wrapper' data-index={index} key={country.country} data-testid={'parent'}>
-        <div className='card-country-name' data-testid={'child'}>{country.country}</div>
+      <div className='card-wrapper' data-index={index} key={country.country}>
+        <div className='card-country-name'>{country.country}</div>
         <div className='card-city-name'>{Object.keys(cityConfig[country.iso2]).join('')}</div>
         <div className="card-overlay">
           <div className='card-country-name'>{country.country}</div>
