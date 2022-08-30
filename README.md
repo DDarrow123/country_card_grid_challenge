@@ -1,5 +1,5 @@
-# Valtech Code Challenge
-A code challenge that displays country cards with various country names, cities, and a brief blurb about each city! 
+# Country Card Grid
+A page that displays country cards with various country names, cities, and a brief blurb about each city! 
 
 
 ## API
